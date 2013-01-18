@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Dynamically selecting a tab/ loading an external page</title>
+<link rel="stylesheet" type="text/css" href="../../ddincludes/mainstyle.css" />
+
+<link rel="stylesheet" type="text/css" href="ajaxtabs/ajaxtabs.css" />
+
+<script type="text/javascript" src="ajaxtabs/ajaxtabs.js">
+
+/***********************************************
+* Ajax Tabs Content script v2.2- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+</head>
+
+<body>
+
+<!--#include virtual="/ddincludes/topsection.htm" -->
+
+<p id="pathlinks"><a href="http://www.dynamicdrive.com/">Home</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />
+<a href="index.htm">Ajax Tabs Content</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" /> 
+Dynamically selecting a tab/ loading an external page<br>
+&nbsp;</p>
+
+<table id="maintable" border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="leftbar" valign="top">
+<!--#include virtual="/ddincludes/leftnav.htm" -->
+    </td>
+    <td id="spacertd">
+<img src="../../spacer.gif" id="spacergif">
+    </td>
+    <td valign="top" id="contentarea">
+    
+<!--#include virtual="/ddincludes/contentheader.htm" -->
+
+<h3> <b><!--webbot bot="HTMLMarkup" startspan --><form class="navselectform">
+<select name="example" size="1" onChange="pagenavselect_dd(this)">
+<option value="index.htm">Script Index Page</option>
+<option value="ajaxtabs_suppliment.htm" selected="selected">Dynamically selecting a tab/ loading an external page
+</option>
+<option value="ajaxtabs_suppliment2.htm">Nesting Ajax Tabs</option>
+<option value="ajaxtabs_suppliment3.htm">Ajax Tabs Content documentation</option>
+</select>
+</form>
+<!--webbot bot="HTMLMarkup" endspan i-checksum="49257" --><u>Dynamically 
+selecting a tab</u></b><u>/ loading an external page</u></h3>
+<p>Anywhere on your page, you can dynamically select a particular tab or load a 
+new page into the content container:</p>
+<p><!--webbot bot="HTMLMarkup" startspan --><p><a href="javascript:countries.cycleit('prev')" style="margin-right: 280px; text-decoration:none"><img src="../roundleft.gif" border="0" /> Back</a>  <a href="javascript:countries.cycleit('next')" style="text-decoration:none"><img src="../roundright.gif" border="0" /> Forward</a></p>
+
+<ul id="countrytabs" class="shadetabs">
+<li><a href="external1.htm" rel="countrycontainer" class="selected">Tab 1</a></li>
+<li><a href="external2.htm" rel="countrycontainer" id="favorite">Tab 2</a></li>
+<li><a href="external3.htm" rel="countrycontainer">Tab 3</a></li>
+<li><a href="external4.htm" rel="countrycontainer">Tab 4</a></li>
+</ul>
+
+<div id="countrydivcontainer" style="border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px">
+</div>
+
+<script type="text/javascript">
+
+var countries=new ddajaxtabs("countrytabs", "countrydivcontainer")
+countries.setpersist(true)
+countries.setselectedClassTarget("link") //"link" or "linkparent"
+countries.init()
+
+</script>
+
+<ul>
+<li><a href="javascript: countries.expandit(2)">Select 3rd Tab</a></li>
+<li><a href="javascript: countries.expandit('favorite')">Select Tab with ID "favorite"</a></li>
+<li><a href="ajaxtabs_suppliment.htm?countrytabs=1">Reload page and select 2nd  tab using URL parameter</a></li>
+<li><a href="javascript: countries.loadajaxpage('external5.htm')">Load "external5.htm" into content container via Ajax</a></li>
+<li><a href="javascript: countries.loadiframepage('http://www.google.com')">Load "http://www.google.com" into content container via IFRAME</a></li>
+</ul><!--webbot bot="HTMLMarkup" endspan i-checksum="15965" --></p>
+<p>Given the below Ajax Tabs instance:</p>
+<p class="codehighlight">&lt;ul id=&quot;countrytabs&quot; class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external1.htm&quot; rel=&quot;countrycontainer&quot; class=&quot;selected&quot;&gt;Tab 
+1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external2.htm&quot; rel=&quot;countrycontainer&quot; id=&quot;favorite&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external3.htm&quot; rel=&quot;countrycontainer&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external4.htm&quot; rel=&quot;countrycontainer&quot;&gt;Tab 4&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+<br>
+&lt;div id=&quot;countrydivcontainer&quot; style=&quot;border:1px solid gray; width:450px; 
+margin-bottom: 1em; padding: 10px&quot;&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var countries=new ddajaxtabs(&quot;countrytabs&quot;, &quot;countrydivcontainer&quot;)<br>
+countries.setpersist(true)<br>
+countries.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+countries.init()<br>
+<br>
+&lt;/script&gt;</p>
+<p>Here is how to accomplish the following:</p>
+
+<h3 align="left">
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Dynamically selecting a tab anywhere on your page</h3>
+<p align="left">After your Ajax Tab script is initialized and displayed, you can 
+dynamically select any of its tabs either based the tab's position relative to 
+its peers, or its ID attribute (you have to assign it one first). The method to 
+call is the following:</p>
+<p class="codehighlight">instance.expandit(tabid_or_position)</p>
+<p align="left">The parameter entered should either a string representing the 
+tab link's ID attribute (you need to first assign one to that tab), or an 
+integer corresponding to that tab's position relative to its peers, to select. 
+For the later, the counting starts at 0 (ie: 0=1st tab). For example:</p>
+<p class="codehighlight" align="left">&lt;p&gt;&lt;a href=&quot;javascript: 
+countries.expandit(2)&quot;&gt;Select 3rd Tab&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;javascript: countries.expandit('favorite')&quot;&gt;Select Tab with ID 
+&quot;favorite&quot;&lt;/a&gt;&lt;/p&gt;</p>
+
+<h3>
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Cycling between tabs sequentially</h3>
+<p>You can add the functionality of letting the user easily move between tabs, 
+by dynamically selecting either the &quot;next&quot; or &quot;previous&quot; tab. For example, lets 
+say you're using Ajax Tabs Content to display very long content. Instead of 
+asking the user to scroll back up and select the next tab each time, you can add 
+a &quot;Next&quot; and &quot;Previous&quot; pagination link at the bottom to let the user quickly 
+move on to the next tab. Cycling tabs is done via the method:</p>
+<p class="codehighlight">instance.cycleit(&quot;next/prev&quot;)</p>
+<p align="left">The parameter entered should either be &quot;<code>next</code>&quot; or &quot;<code>prev</code>&quot;, 
+depending on the direction you wish to move:</p>
+<p class="codehighlight" align="left">&lt;p&gt;&lt;a 
+href=&quot;javascript:countries.cycleit('prev')&quot; style=&quot;margin-right: 280px;&quot;&gt;&lt;img 
+src=&quot;roundleft.gif&quot; border=&quot;0&quot; /&gt; Back&lt;/a&gt; <br>
+&lt;a href=&quot;javascript:countries.cycleit('next')&quot;&gt;&lt;img src=&quot;roundright.gif&quot; 
+border=&quot;0&quot; /&gt; Forward&lt;/a&gt;&lt;/p&gt;</p>
+
+<h3 align="left">
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Dynamically selecting a tab using a <font color="#FF0000">
+remote</font> link</h3>
+<p>Starting in v2.2, you can define a link on another page that selects a tab on the 
+target page (one containing Ajax Tab Content script) when the page is 
+loaded. In other words, depending on the referring page, a different tab can 
+be selected by default. This is done by adding to the original link a URL 
+parameter string specifying the Ajax Tab Content's <font color="#FF0000">main 
+container ID</font>, plus the index of the tab to select. The syntax is:</p>
+<p style="font-size: 110%" class="codehighlight">&lt;a href=&quot;target.htm<b><font color="#FF0000">?tabinterfaceid=index</font></b>&quot;&gt;Target 
+Page&lt;/a&gt;</p>
+<p>where &quot;<code>tabinterfaceid</code>&quot; is the ID of the main tab 
+container, and <code>index</code> is the tab to select based on its position 
+relative to its peers (0=1st tab). For example, given the below initialization code:</p>
+<p class="codehighlight">&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var myflowers=new ddajaxtabs(&quot;<font color="#FF0000">flowertabs</font>&quot;) 
+//enter ID of Tab Container<br>
+myflowers.setpersist(true) //toogle persistence of the tabs' state<br>
+myflowers.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+myflowers.init()<br>
+<br>
+&lt;/script&gt;</p>
+<p>The following link (presumably on another page) causes the 2nd tab within the 
+above Ajax Tab content instance to be selected by default when <code>
+&quot;target.htm&quot;</code> loads:</p>
+<p style="font-size: 110%" class="codehighlight">&lt;a href=&quot;target.htm<font color="#FF0000">?flowertabs=1</font>&quot;&gt;Target 
+Page&lt;/a&gt;</p>
+<p>If your page contains multiple Ajax Tab content instances and you wish to 
+select a tab explicity using the URL method for&nbsp; all of them, you can do that as well:</p>
+<p style="font-size: 110%" class="codehighlight">&lt;a href=&quot;target.htm<font color="#FF0000">?flowertabs=1&amp;countrytabs=2</font>&gt;Target 
+Page&lt;/a&gt;</p>
+<p>The URL parameter method of tab selection overrides both the persisted 
+tab states and default selected tab setting using <code>class=&quot;selected'</code> within the 
+HTML.</p>
+<h3>
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Dynamically loading an external page using Ajax</h3>
+<p>You can dynamically load an external page into the Ajax Tabs content 
+container via Ajax, such as by using a link on the page. It's done with the 
+below method:</p>
+<p class="codehighlight">instance.loadajaxpage(pageurl)</p>
+<p>&quot;<code>pageurl</code>&quot; should be the full URL or path to the external file on 
+your server. You <b>cannot</b> use this method to load a page from an outside 
+domain, due to Ajax domain restrictions:</p>
+<p class="codehighlight" align="left">&lt;p&gt;&lt;a href=&quot;javascript: 
+countries.loadajaxpage('external5.htm')&quot;&gt;Load &quot;external5.htm&quot; into content 
+container via Ajax&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;javascript: 
+countries.loadajaxpage('http://www.mysite.com/content/external5.htm')&quot;&gt;Load into 
+&quot;external5.htm&quot; content container via Ajax&lt;/a&gt;&lt;/p&gt;</p>
+<p>The selected tab in this case doesn't change when you load a new page 
+directly into the content container using this method.</p>
+
+<h3>
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Dynamically loading an external page using IFRAME</h3>
+<p>You can also load an external page into the Ajax Tabs content container via
+<code>IFRAME</code>. What this does is erase whatever previous content was 
+inside the content container, add an <code>IFRAME</code> tag into it, and load 
+the desired page into the <code>IFRAME</code>:</p>
+<p class="codehighlight">instance.loadiframepage(pageurl)</p>
+<p>&quot;<code>pageurl</code>&quot; should be the full URL or path to the external file on 
+your server or beyond. Since the external page is loaded via IFRAME, the page 
+can be either from your domain or outside as well (ie:
+<a href="http://www.google.com">http://www.google.com</a>):</p>
+<p class="codehighlight">&lt;p&gt;&lt;a href=&quot;javascript: 
+countries.loadiframepage('external5.htm')&quot;&gt;Load &quot;external5.htm&quot; into content 
+container via IFRAME&lt;/a&gt;&lt;/p&gt;<br>
+&lt;p&gt;&lt;a href=&quot;javascript: countries.loadiframepage('http://www.google.com')&quot;&gt;Load 
+Google Homepage into content container via IFRAME&lt;/a&gt;&lt;/p&gt;</p>
+<p>In case you're wondering, the IFRAME tag that's added to the content 
+container always carries the CSS class name &quot;<code>tabcontentiframe</code>&quot; and 
+a name attribute of &quot;<code>_ddajaxtabsiframe-<b>contentdivid</b></code>&quot;, where 
+&quot;<b>contentdivid</b>&quot; is the ID of the content container (ie: &quot;<code>countrydivcontainer</code>&quot;). 
+You can further use this information to either style the IFRAME using CSS, or 
+manipulate it somehow by directly accessing it via its <code>name</code> 
+attribute.</p>
+<p>On the <a href="ajaxtabs_suppliment2.htm">next page</a>, learn how to nest 
+Ajax Tabs, so the external page fetched by a tab in itself contains another 
+instance of Ajax Tabs Content script.</p>
+    <h1 class="navselectheader">Table Of Contents</h1>
+<p>
+    This script consists of an index page plus a supplementary page:<ul class="navselectlist">
+	<li><a href="index.htm">Script Index Page</a></li>
+	<li>Dynamically selecting a tab/ loading an external page</li>
+	<li><a href="ajaxtabs_suppliment2.htm">Nesting ajax tabs</a></li>
+	<li><a href="ajaxtabs_suppliment3.htm">Ajax Tabs Content documentation</a></li>
+	</ul>
+	<p>
+    <!--#include virtual="/ddincludes/contentfooter.htm" --></td>
+  </tr>
+</table>
+
+<!--#include virtual="/ddincludes/footer.htm" -->
+
+</body>
+
+</html>

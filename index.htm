@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Dynamic Drive DHTML Scripts- Ajax Tabs Content Script (v 2.2)</title>
+<link rel="stylesheet" type="text/css" href="../../ddincludes/mainstyle.css" />
+
+<link rel="stylesheet" type="text/css" href="ajaxtabs/ajaxtabs.css" />
+
+<script type="text/javascript" src="ajaxtabs/ajaxtabs.js">
+
+/***********************************************
+* Ajax Tabs Content script v2.1- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+
+<style type="text/css">
+
+.syntaxlist li{
+margin-bottom: 1em;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!--#include virtual="/ddincludes/topsection.htm" -->
+
+<p id="pathlinks"><a href="http://www.dynamicdrive.com/">Home</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex17/indexb.html">Iframe and Ajax</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+Here</p>
+
+<table id="maintable" border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="leftbar" valign="top">
+<!--#include virtual="/ddincludes/leftnav.htm" -->
+    </td>
+    <td id="spacertd">
+<img src="../../spacer.gif" id="spacergif">
+    </td>
+    <td valign="top" id="contentarea">
+    
+<!--#include virtual="/ddincludes/contentheader.htm" -->
+
+<div id="scriptheader"><span class="compatlist">FF1+ IE5.5+ Opr8+</span> 
+  <h3>Ajax Tabs Content Script (v 2.2)</h3></div> 
+<div id="scriptheaderFoot"><span class="rightit"></span> <b><!--webbot bot="HTMLMarkup" startspan --><form class="navselectform">
+<select name="example" size="1" onChange="pagenavselect_dd(this)">
+<option value="index.htm">Script Index Page</option>
+<option value="ajaxtabs_suppliment.htm">Dynamically selecting a tab/ loading an external page
+</option>
+<option value="ajaxtabs_suppliment2.htm">Nesting Ajax Tabs</option>
+<option value="ajaxtabs_suppliment3.htm">Ajax Tabs Content documentation</option>
+</select>
+</form>
+<!--webbot bot="HTMLMarkup" endspan i-checksum="32490" -->Author:</b>  
+  <span id="ddauthor">Dynamic Drive</span></div>
+
+      <p align="left">  <b>Note:</b> Updated April 8th, 08 to version 2.2. Adds 
+		support for expanding a tab via a link on another page and using a URL 
+		parameter. Only .js file changed from v2.1</p>
+<p align="left">  <strong>Description: </strong>This is a versatile Ajax Tabs Content script that lets you 
+display content pulled from external files inside a DIV and organized via CSS 
+tabs. A fully unobtrusive, CSS and HTML based script, it supports practical 
+features such as persistence of the active tab (ie: when 
+page is reloaded), an &quot;IFRAME&quot; mode, a &quot;slideshow&quot; mode, ability to expand/contract arbitrary DIVs 
+on the page at the same time, nested tabs, and much more. We got our inspiration for this script 
+from Yahoo's
+<a href="http://www.yahoo.com/">homepage</a>, which employs such a concept to 
+show news in an organized fashion.</p>
+<p align="left">Here's a quick outline of the script features:</p>
+<ul>
+	<li>Fetch and display an external page (from the same domain) inside a 
+	container when a tab is clicked on via Ajax.</li>
+	<li><font color="#FF0000">(v 2.0) </font>Apart from Ajax, an 
+	external page can also be fetched and displayed via the <code>IFRAME</code> 
+	element instead. This is useful for external pages that either contain 
+	JavaScript/ CSS code that doesn't run properly when fetched via Ajax, or the 
+	page is from an outside domain.</li>
+	<li>Add a &quot;default&quot; content inside the container to either be shown while no 
+	tabs are selected, or to be associated with a specific tab. The default 
+	content is added inline on the page and not fetched via Ajax, to avoid 
+	unnecessary fetching of external pages.</li>
+	<li>Supports session only persistence, so the last tab user clicked on is 
+	remembered if he/she returns to the page within the same browser session.</li>
+	<li><font color="#FF0000">(v 2.0)</font> Supports auto mode, in 
+		which script automatically cycles through and selects each tab 
+		periodically until a tab is explicitly selected.</li>
+	<li><font color="#FF0000">(v 2.0) </font>Ability to also expand/contract arbitrary DIVs on the page as the tabbed 
+		content is expanded/ contracted.</li>
+	<li><font color="#FF0000">(v 2.0) </font>Ability to 
+	<a href="ajaxtabs_suppliment.htm">dynamically 
+		select a tab</a> either based on its position within its peers, or its ID 
+		attribute.</li>
+	<li><font color="#FF0000">(v 2.1) </font>Ability to 
+	<a href="ajaxtabs_suppliment.htm">dynamically cycle 
+	forward/back between tabs.</a> Create a &quot;Next&quot; and &quot;Back&quot; link for users to move 
+	between tabs, for example.</li>
+	<li><font color="#FF0000">(v 2.2) </font><a href="ajaxtabs_suppliment.htm">A link from another page</a> linking to 
+	the target page can select a tab on the later when loaded, via the URL 
+	parameter string ((ie: <code>
+	http://mysite.com/tabcontent.htm?tabinterfaceid=0</code>).</li>
+	<li><font color="#FF0000">(v 2.0) </font>Ability to directly load a 
+	different external page into the content container, either via Ajax or 
+	IFRAME.</li>
+	<li><font color="#FF0000">(v 2.0) </font>Ability to set where 
+		the CSS class &quot;<code>selected</code>&quot; get assigned when a tab is clicked 
+		on- either on the tab link itself (its &quot;<code>a</code>&quot; element), or its 
+		parent instead (ie: &quot;<code>li</code>&quot; element). This makes the script 
+		adaptable to both CSS Tabs that are styled at the &quot;<code>A</code>&quot; level 
+		itself, or its parent container instead.</li>
+	<li><font color="#FF0000">(v 2.0) </font>Supports <b>nested</b> Ajax 
+	Tabs! In other words, you can have an external page fetched via Ajax contain 
+	in itself Ajax Tabs that show their own contents when clicked on as well. 
+	This is made possible using the &quot;<code>onajaxpageload</code>&quot; custom event 
+	handler (see documentation).</li>
+	<li>Supports multiple Ajax Tabs Contents on the same page.</li>
+	<li>Fully unobtrusive, search engine friendly design. For search engines or 
+	browsers with JavaScript disabled, the external contents will just load as 
+	actual pages (instead of via Ajax).</li>
+</ul>
+      <p>As you can see, this Ajax Tabs Content script was designed to be much 
+		more than look pretty, but usable.</p>
+<p align="left"><b>Reminder:</b> Due to security limitations, the external pages 
+loaded via each tab using Ajax must reside on the same domain as the script 
+itself. This limitation doesn't apply if you use the &quot;<code>IFRAME</code>&quot; 
+option to fetch and show the external page instead.</p>
+      <p align="left"><strong>Demos:</strong></p>
+    <p align="left"><!--webbot bot="HTMLMarkup" startspan --><p><b>Demo #1- Basic implementation</b></p>
+
+<p>
+- First tab shows default, inline content directly added inside container DIV<br />
+- 2nd and 3rd tabs show external pages fetched via <b>Ajax</b><br />
+- 4th tab shows an external page fetched via <b>IFRAME</b><br />
+</p>
+
+<ul id="countrytabs" class="shadetabs">
+<li><a href="#" rel="#default" class="selected">Tab 1</a></li>
+<li><a href="external2.htm" rel="countrycontainer">Tab 2</a></li>
+<li><a href="external3.htm" rel="countrycontainer">Tab 3</a></li>
+<li><a href="external4.htm" rel="#iframe">Tab 4</a></li>
+<li><a href="http://www.dynamicdrive.com">Dynamic Drive</a></li>
+</ul>
+
+<div id="countrydivcontainer" style="border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px">
+<p>This is some default tab content, embedded directly inside this space and not via Ajax. It can be shown when no tabs are automatically selected, or associated with a certain tab, in this case, the first tab.</p>
+</div>
+
+<script type="text/javascript">
+
+var countries=new ddajaxtabs("countrytabs", "countrydivcontainer")
+countries.setpersist(true)
+countries.setselectedClassTarget("link") //"link" or "linkparent"
+countries.init()
+
+</script>
+
+<p><a href="javascript: countries.expandit(3)">Dynamically select last Tab</a> | <a href="index.htm?countrytabs=1">Reload page and select 2nd  tab using URL parameter</a></p>
+
+<hr />
+
+
+<p><b>Demo #2- Expanding of arbitrary DIVs on the page enabled</b></p>
+
+<p>
+- All tabs fetched via <b>Ajax</b><br />
+- 2nd and 4th tabs also show/hide arbitrary DIVs when clicked on<br />
+</p>
+
+<div id="flowernote" style="display:none; position:absolute; right: 30px; width:150px; height:150px; background-color:red; color:white">
+Arbitrary DIV 1
+</div>
+
+<div id="flowernote2" style="display:none; position:absolute; right: 200px; width:80px; height:80px; background-color:black; color:white">
+Arbitrary DIV 2
+</div>
+
+<div id="flowernote3" style="display:none; position:absolute; right: 30px; width:140px; height:140px; background-color:navy; color:white">
+Arbitrary DIV 3
+</div>
+
+
+<div  id="flowerdivcontainer" style="border:1px solid gray; width:350px; height: 200px; background-color: lightyellow; padding: 5px">
+</div>
+
+<div id="flowertabs" class="modernbricksmenu2">
+<ul>
+<li><a href="external1.htm" rel="flowerdivcontainer" class="selected">Tab 1</a></li>
+<li><a href="external2.htm" rel="flowerdivcontainer" rev="flowernote,flowernote2">Tab 2</a></li>
+<li><a href="external3.htm" rel="flowerdivcontainer">Tab 3</a></li>
+<li><a href="external5.htm" rel="flowerdivcontainer" rev="flowernote3">Tab 4</a></li>
+<li><a href="http://www.dynamicdrive.com/dynamicindex17/ajaxtabscontent/">Ajax Tabs script</a></li>
+</ul>
+</div>
+<br style="clear: left" />
+
+<script type="text/javascript">
+
+var myflowers=new ddajaxtabs("flowertabs", "flowerdivcontainer")
+myflowers.setpersist(true)
+myflowers.setselectedClassTarget("link") //"link" or "linkparent"
+myflowers.init()
+
+</script>
+
+<p><a href="javascript:myflowers.cycleit('prev')" style="margin-right: 225px; text-decoration:none"><img src="../roundleft.gif" border="0" /> Back</a>  <a href="javascript:myflowers.cycleit('next')" style="text-decoration:none"><img src="../roundright.gif" border="0" /> Forward</a></p>
+
+<p><a href="javascript: myflowers.loadajaxpage('external2.htm')">Load "external2.htm" into content container via Ajax</a></p>
+
+<hr />
+
+<p><b>Demo #3- All contents fetched via "IFRAME"</b></p>
+
+<div id="pettabs" class="indentmenu">
+<ul>
+<li><a href="external1.htm" rel="#iframe" class="selected">Tab 1</a></li>
+<li><a href="external2.htm" rel="#iframe">Tab 2</a></li>
+<li><a href="external3.htm" rel="#iframe">Tab 3</a></li>
+<li><a href="external4.htm" rel="#iframe">Tab 4</a></li>
+</ul>
+<br style="clear: left" />
+</div>
+
+<div id="petsdivcontainer" style="border:1px solid gray; width:550px; height: 150px; padding: 5px; margin-bottom:1em">
+</div>
+
+
+<script type="text/javascript">
+
+var mypets=new ddajaxtabs("pettabs", "petsdivcontainer")
+mypets.setpersist(false)
+mypets.setselectedClassTarget("link")
+mypets.init()
+
+</script>
+
+<p><a href="javascript: mypets.loadiframepage('http://www.google.com')">Load "Google Homepage" into content container via IFRAME</a></p><!--webbot bot="HTMLMarkup" endspan i-checksum="5321" --></p>
+    <hr size="1">
+    <p align="left"><strong>Directions</strong></p>
+      <p align="left">To add this script to your page, just download 
+      &quot;<a href="ajaxtabscontent.zip">ajaxtabscontent.zip</a>&quot;, and refer to 
+		&quot;demo.htm&quot; inside for the full source code to the 3 demos you see above:</p>
+<ul>
+  <li><b style="font-size: 110%"><a href="ajaxtabscontent.zip">
+  ajaxtabscontent.zip</a></b> (consists 
+of the below files):<ul style="list-style-type: decimal">
+  <li>
+  <a href="demo.htm">demo.htm</a></li>
+  <li>
+  <a href="ajaxtabs/ajaxtabs.css">ajaxtabs.css</a></li>
+  <li>
+  <a href="ajaxtabs/ajaxtabs.js">ajaxtabs.js</a></li>
+  <li>
+  <a href="ajaxtabs/loading.gif">loading.gif</a></li>
+  <li>
+  <a href="ajaxtabs/shade.gif">shade.gif</a>,
+  <a href="ajaxtabs/shadeactive.gif">shadeactive.gif</a>,
+	<a href="ajaxtabs/indentbg.gif">indentbg.gif</a>,
+	<a href="ajaxtabs/indentbg2.gif">indentbg2.gif</a></li>
+  <li>
+  Demo files: <a href="external1.htm">external1.htm,</a> <a href="external2.htm">
+  external2.htm</a>, <a href="external3.htm">external3.htm</a>,
+	<a href="external4.htm">external4.htm,</a> and <a href="external5.htm">
+	external5.htm</a></li>
+</ul>
+</li>
+</ul>
+<h3 align="left"><u>Setting up the script on your page- basic usage</u></h3>Lets 
+see in detail now how to set up this script on your page. After having added the <code>.js</code> 
+and <code>.css</code> file references to the HEAD section of your page, as seen 
+in <a href="demo.htm">demo.htm</a>, proceed 
+with the following:<p><b>Step 1:</b> Define the HTML for the Tabs themselves. 
+This can be a fancy CSS menu, or even just a DIV tag with a bunch of links 
+inside. Lets use the former:</p>
+<p class="codehighlight">&lt;ul id=&quot;<b><font color="#FF0000">countrytabs</font></b>&quot; class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; <font color="#FF0000">class=&quot;selected&quot;</font>
+<font color="#FF0000">rel=&quot;#default&quot;</font>&gt;Tab 1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external2.htm&quot; <font color="#FF0000">rel=&quot;countrycontainer&quot;</font>&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external3.htm&quot; <font color="#FF0000">rel=&quot;countrycontainer&quot;</font>&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external4.htm&quot; <font color="#FF0000">rel=&quot;#iframe&quot;</font>&gt;Tab 4&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;http://www.dynamicdrive.com&quot;&gt;Dynamic Drive&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;</p>
+<p>The parts in red are significant, regardless of how you define your tabs:</p>
+<ol class="syntaxlist">
+	<li><b>id=&quot;countrytabs&quot;</b>: Give the main container of your tab links a unique ID (ie: &quot;<code>countrytabs</code>&quot;). 
+	All links (&quot;<code>A</code>&quot; elements) within this container will be scanned 
+	by the script for special meaning.</li>
+	<li><b>rel=&quot;#default|containerid|#iframe&quot;:</b> For each tab link that should reveal content when clicked on, 
+	add a &quot;<code>rel</code>&quot; attribute inside its link tag with one of 
+	three possible values: &quot;<code>#default</code>&quot;, <code>id_of_container_div</code>, 
+	or &quot;<code>#iframe</code>&quot;. This in combination with the link's <code>href</code> 
+	attribute determines what external file to fetch, and how to display it. 
+	Most commonly you'll be using <code>containerid</code>, which 
+	corresponds to the ID of the container DIV on the page in which to load the Ajax 
+	fetched content (see <b>Step 2</b> below). &quot;<code>#default&quot;</code> and &quot;<code>#iframe</code>&quot; 
+	on the other hand are both special keywords. &quot;<code>#default&quot;</code> 
+	causes the tab to show no external content but instead what's embedded 
+	directly inside the container DIV, while <code>#iframe</code> causes the tab to 
+	show its content inside an <code>IFRAME</code> tag instead of via Ajax.</li>
+	<li><b>rev=&quot;divid1, divid2, etc&quot;</b>: For each tab link, you can also insert 
+	a rev attribute to simultaneously toggle the visibility of arbitrary DIVs on 
+	the page. See <a href="ajaxtabs_suppliment3.htm#eg1">example #1</a> in the 
+	documentation page for more info.</li>
+	<li><b>class=&quot;selected&quot;:</b> If you wish a certain tab to be selected by default when the page loads, 
+	give the tab in question a <code>class=&quot;selected&quot;</code> assignment. By 
+	default it should be added inside the link itself (&quot;<code>A</code>&quot;). 
+	However, the script can also be told to look for such as class in the link's
+	<b>parent</b> container instead (in this case, &quot;<code>LI</code>&quot;). This is 
+	useful depending on how the CSS for your tabs are structured. See the 
+	<a href="tabcontent_suppliment.htm">documentation page</a> for more info.</li>
+	<li>A tab can also just act as a regular link, 
+  	with the absence of the &quot;<code>rel</code>&quot; attribute (ie: the 
+	&quot;Dynamic Drive&quot; tab at the very end).</li>
+</ol>
+<p>There is an additional attribute you can use, the &quot;<code>rev</code>&quot; 
+attribute, to also expand/contract arbitrary DIVs outside the Tab interface. See 
+the documentation below for details.</p>
+<p><b>Step 2:</b> Define a Content container DIV that will house the display of the 
+external pages specified in the tabs above:</p>
+<p class="codehighlight">&lt;div <font color="#FF0000">id=&quot;countrydivcontainer&quot;</font> 
+style=&quot;border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px&quot;&gt;<br>
+//Optional default content here.<br>
+&lt;/div&gt;</p>
+<p>The only required portion is the DIV itself with a unique ID assigned 
+as highlighted in red. The content &quot;<code>//Optional default content here</code>&quot; 
+that's added inside the DIV, is, well, optional. Define it if you wish a certain tab to 
+show this content instead of external content fetched via Ajax or <code>IFRAME</code>. It's 
+useful as the content for the tab selected by default when the page loads, to 
+cut down on the trips the script has to take to fetch files from the server. To 
+associate a tab with the default content of the container DIV btw, you would use 
+the declaration <code>rel=&quot;#default&quot;</code> inside the tab's link.</p>
+<p><b>Step 3:</b> With your Tabs and the container DIV both defined, it's 
+now time to activate the script, by calling <code>ddajaxtabs()</code> with the 
+desired settings:</p>
+<p class="codehighlight">&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var countries=new ddajaxtabs(&quot;<font color="#FF0000">countrytabs</font>&quot;, &quot;<font color="#FF0000">countrydivcontainer</font>&quot;)<br>
+countries.setpersist(true)<br>
+countries.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+countries.init()<br>
+<br>
+&lt;/script&gt;</p>
+<p>The first line tells the script the IDs of both your CSS tabs container and content container, in that order, 
+with the variable &quot;<code>countries</code>&quot; being an arbitrary but unique 
+identifier variable. The second line toggles the persistence of the tabs' state, whether or not a 
+clicked on tab should be remembered and recalled upon the user's return (within 
+the same browser session). The 3rd line tells the script whether to look for
+<code>class=&quot;selected&quot;</code> within the tab link (&quot;<code>A</code>&quot;) itself, or 
+its parent container instead (ie: &quot;<code>LI</code>&quot;). What value to use depends 
+on where you will be inserting the <code>class=&quot;selected&quot;</code> attribute 
+inside a tab. Lastly, the 4th line initializes everything.</p>
+<p>And that's it for setting up the script in its basic form. However, you'll 
+want to also learn how to expand/contract arbitrary DIVs on the page at the same 
+time a tab is selected, plus how to get the tabs to automatically rotate like a 
+slideshow. That's what the documentation below is for!</p>
+<h3>
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Adding default content to Ajax Tabs</h3>
+<p>While you can certainly configure the script so that every tab loads an 
+external page, you might as well have a particular tab show content that already 
+exists within the content container:</p>
+<p class="codehighlight">&lt;div <font color="#FF0000">id=&quot;countrydivcontainer&quot;</font> 
+style=&quot;border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px&quot;&gt;<br>
+//Optional default content here.<br>
+&lt;/div&gt;</p>
+<p>Any HTML added inside the DIV above is the default content, and can 
+either be shown if the script is not set to select any tab automatically, or if 
+associated with a certain tab, so clicking that tabs shows this content. For the 
+later, to associate the default content with a tab, just use the keyword &quot;<code>#default</code>&quot; 
+instead of the ID of the container DIV inside the tab link's &quot;<code>rel</code>&quot; 
+attribute:</p>
+<pre>&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;<font color="#0000ff">#default</font>&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;</pre>
+<h3>
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Syntax for specifying an external page to load</h3>
+<p>When specifying a tab to load an external page, either via Ajax or <code>
+IFRAME</code>, 
+the path to the page is specified in the tab link's &quot;<code>href</code>&quot; 
+attribute:</p>
+<pre>&lt;li&gt;&lt;a href=&quot;<font color="#0000FF">external.htm</font>&quot; rel=&quot;countrycontainer&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;</pre>
+<p>This assumes external.htm is in the same directory as where the Ajax Tabs 
+script is. You use an absolute URL to the external page as well:</p>
+<pre>&lt;li&gt;&lt;a href=&quot;<font color="#0000ff">http://www.mysite.com/dir/external.htm</font>&quot; rel=&quot;countrycontainer&quot;&gt;DHTML&lt;/a&gt;&lt;/li&gt;</pre>
+<p>For Ajax fetched pages, You <b>cannot</b>, however, specify a URL that's outside your server's 
+domain, such as &quot;http://www.google.com/page.htm', as Ajax security dictates that 
+the calling page and page to be fetched via Ajax must be from the same domain. 
+This limitation <b>doesn't</b> apply to the <code>IFRAME</code> method.</p>
+<p>This convention for specifying the page to load means the script downgrades 100% 
+with JS disabled browsers and search engines, allowing them to load the links as 
+normal pages.</p>
+<h3 align="left">
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Turning on slideshow mode</h3>
+<p align="left">You can have the tabs within your Ajax Tabs Content 
+automatically rotate every x seconds until a user explicitly clicks on a tab. To 
+enable &quot;slideshow mode&quot; on your Tab Content, just pass in an integer when 
+calling <code>instance.init()</code> to initialize your script:</p>
+<p class="codehighlight">&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var myflowers=new ddajaxtabs(&quot;flowertabs&quot;, &quot;flowerdivcontainer&quot;)<br>
+myflowers.setpersist(true)<br>
+myflowers.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+myflowers.init(<font color="#FF0000">3000</font>)<br>
+<br>
+&lt;/script&gt;</p>
+<p>Notice the integer in red, which is in units of <b>milliseconds</b>. With one 
+defined, the script will rotate through the tabs every x milliseconds (so 3000=3 
+seconds).</p>
+
+<h3 align="left"><a name="eg1"></a>
+<img border="0" src="../../ddincludes/orangecircle.gif" width="20" height="19"> Expanding/ Contracting arbitrary DIVs on the page when a tab is 
+selected</h3>
+<p align="left">You already know that a tab can fetch external content either 
+via Ajax or IFRAME via the &quot;<code>rel</code>&quot; 
+attribute. However, you can in fact take this one step further, and also have 
+the same tab manipulate the visibility of arbitrary DIVs on the main page itself! This is done using the &quot;<code>rev</code>&quot; 
+attribute, and setting them to the ID(s) of the arbitrary DIVs on the page to 
+also expand/contract. See <a href="ajaxtabs_suppliment3.htm#eg1">example #1</a> 
+in the documentation page for more info.</p>
+<p>On the <a href="ajaxtabs_suppliment.htm">next page</a>, we look in detail the 
+three methods at your disposal to dynamically select a tab or load an external 
+page into the Content Container from anywhere on your page.</p>
+    <h1 class="navselectheader">Table Of Contents</h1>
+<p>
+    This script consists of an index page plus a supplementary page:<ul class="navselectlist">
+	<li>Script Index Page</li>
+	<li><a href="ajaxtabs_suppliment.htm">Dynamically selecting a tab/ loading 
+	an external page</a> <font color="#FF0000">updated for v2.2</font></li>
+	<li><a href="ajaxtabs_suppliment2.htm">Nesting ajax tabs</a></li>
+	<li><a href="ajaxtabs_suppliment3.htm">Ajax Tabs Content documentation</a></li>
+	</ul>
+	<p>
+    <!--#include virtual="/ddincludes/contentfooter.htm" --></td>
+  </tr>
+</table>
+
+<!--#include virtual="/ddincludes/footer.htm" -->
+
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Nesting Ajax Tabs</title>
+<link rel="stylesheet" type="text/css" href="../../ddincludes/mainstyle.css" />
+
+<link rel="stylesheet" type="text/css" href="ajaxtabs/ajaxtabs.css" />
+
+<script type="text/javascript" src="ajaxtabs/ajaxtabs.js">
+
+/***********************************************
+* Ajax Tabs Content script v2.2- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+</head>
+
+<body>
+
+<!--#include virtual="/ddincludes/topsection.htm" -->
+
+<p id="pathlinks"><a href="http://www.dynamicdrive.com/">Home</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" />
+<a href="index.htm">Ajax Tabs Content</a> 
+<img border="0" src="../../ddincludes/arrow2.gif" width="8" height="10" /> 
+Nesting Ajax Tabs</p>
+
+<table id="maintable" border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="leftbar" valign="top">
+<!--#include virtual="/ddincludes/leftnav.htm" -->
+    </td>
+    <td id="spacertd">
+<img src="../../spacer.gif" id="spacergif">
+    </td>
+    <td valign="top" id="contentarea">
+    
+<!--#include virtual="/ddincludes/contentheader.htm" -->
+
+<h3> <b><!--webbot bot="HTMLMarkup" startspan --><form class="navselectform">
+<select name="example" size="1" onChange="pagenavselect_dd(this)">
+<option value="index.htm">Script Index Page</option>
+<option value="ajaxtabs_suppliment.htm">Dynamically selecting a tab/ loading an external page
+</option>
+<option value="ajaxtabs_suppliment2.htm" selected="selected">Nesting Ajax Tabs</option>
+<option value="ajaxtabs_suppliment3.htm">Ajax Tabs Content documentation</option>
+</select>
+</form>
+<!--webbot bot="HTMLMarkup" endspan i-checksum="11888" --><u>Nesting Ajax Tabs</u></b></h3>
+<p>It's possible to have nested Ajax Tabs. That is to say, the external page 
+fetched by one of the tabs can in itself contain a new Ajax Tabs Content 
+instance that loads other content when clicked on. The key is to enlist the help 
+of the custom 
+event handler &quot;<code>instance.onajaxpageload</code>&quot; on your main page to 
+initialize the tabs that are on the external page. Sounds confusing? Lets see it 
+all come together first with an example:</p>
+<p><!--webbot bot="HTMLMarkup" startspan --><ul id="countrytabs" class="shadetabs">
+<li><a href="external1.htm" rel="countrycontainer" class="selected">Tab 1</a></li>
+<li><a href="external2.htm" rel="countrycontainer">Tab 2</a></li>
+<li><a href="externalnested.htm" rel="countrycontainer">Tab 3</a></li>
+</ul>
+
+<div id="countrydivcontainer" style="border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px">
+</div>
+
+<script type="text/javascript">
+
+var countries=new ddajaxtabs("countrytabs", "countrydivcontainer")
+countries.setpersist(true)
+countries.setselectedClassTarget("link") //"link" or "linkparent"
+countries.init()
+
+countries.onajaxpageload=function(pageurl){
+if (pageurl.indexOf("externalnested.htm")!=-1){
+var provinces=new ddajaxtabs("provincetabs", "provincedivcontainer")
+provinces.setpersist(true)
+provinces.setselectedClassTarget("link") //"link" or "linkparent"
+provinces.init()
+}
+
+}
+
+</script><!--webbot bot="HTMLMarkup" endspan i-checksum="56397" --></p>
+
+<p>In the above example, &quot;Tab 3&quot; fetches an external page called &quot;<code>externalnested.htm</code>&quot; 
+via Ajax that in itself contains another Ajax tabs Content instance. Here is the 
+relevant HTML as it appears on the two pages:</p>
+<p><b>Main Page HTML:</b></p>
+<p class="codehighlight">&lt;ul id=&quot;countrytabs&quot; class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external1.htm&quot; rel=&quot;countrycontainer&quot; class=&quot;selected&quot;&gt;Tab 
+1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external2.htm&quot; rel=&quot;countrycontainer&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;externalnested.htm&quot; rel=&quot;countrycontainer&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+<br>
+&lt;div id=&quot;countrydivcontainer&quot; style=&quot;border:1px solid gray; width:450px; 
+margin-bottom: 1em; padding: 10px&quot;&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var countries=new ddajaxtabs(&quot;countrytabs&quot;, &quot;countrydivcontainer&quot;)<br>
+countries.setpersist(true)<br>
+countries.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+countries.init()<br>
+<br>
+countries.onajaxpageload=function(pageurl){<br>
+if (pageurl.indexOf(&quot;externalnested.htm&quot;)!=-1){<br>
+<font color="#FF0000">provinces=new ddajaxtabs(&quot;provincetabs&quot;, 
+&quot;provincedivcontainer&quot;)<br>
+provinces.setpersist(true)<br>
+provinces.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+provinces.init()</font><br>
+}<br>
+<br>
+}<br>
+<br>
+&lt;/script&gt;</p>
+<p><b>&quot;externalnested.htm&quot; HTML:</b></p>
+<p class="codehighlight">&lt;ul id=&quot;provincetabs&quot; class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external1.htm&quot; rel=&quot;provincedivcontainer&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external2.htm&quot; rel=&quot;provincedivcontainer&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;external3.htm&quot; rel=&quot;provincedivcontainer&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+<br>
+&lt;div id=&quot;provincedivcontainer&quot; style=&quot;padding: 10px; border-top: 1px solid 
+gray;&quot;&gt;<br>
+&lt;/div&gt;</p>
+<p>Notice the code in red- this is code that originally should appear inside &quot;<code>externalnested.htm</code>&quot;, 
+but since the tabs in question are on an external page and being called 
+dynamically via Ajax as nested tabs, the code to invoke it needs to be moved to 
+the main page instead and called via the &quot;<code>onajaxpageload</code>&quot; event 
+handler. This event handler basically fires whenever a tab fetching <b>Ajax 
+content</b> has completed loading the external page in question:</p>
+<p class="codehighlight">instance.onajaxpageload=function(<font color="#FF0000">pageurl</font>){<br>
+//if (pageurl==&quot;href_attribute_value_of_tab&quot;){<br>
+//run custom code<br>
+}</p>
+<p>Use the parameter &quot;<code>pageurl</code>&quot; to determine which tab exactly is 
+being clicked on based on its <code>href</code> attribute value, and only fire 
+your custom code for the correct tab. In this case, since I only want to call my 
+custom code to initialize the nested tabs when the 3rd tab is clicked on, I'm 
+testing for:</p>
+<p class="codehighlight">if (pageurl.indexOf(&quot;<b>externalnested.htm</b>&quot;)!=-1){<br>
+&quot;<br>
+&quot;<br>
+}</p>
+<p>here, or the &quot;<code>href</code>&quot; attribute of the 3rd tab.</p>
+<p>If there are multiple tabs all with nested tabs, your custom code should 
+include additional logic to react to each one, for example:</p>
+<p class="codehighlight">if (pageurl.indexOf(&quot;<b>externalnested.htm</b>&quot;)!=-1){<br>
+&quot;<br>
+&quot;<br>
+}<br>
+else if (pageurl.indexOf(&quot;<b>externalnested2.htm</b>&quot;)!=-1){<br>
+&quot;<br>
+&quot;<br>
+}<br>
+else if (pageurl.indexOf(&quot;<b>externalnested3.htm</b>&quot;)!=-1){<br>
+&quot;<br>
+&quot;<br>
+}</p>
+<p>and so on. Use the above technique to set up nested tabs whenever the nested tabs are 
+contained in an external page <b>and</b> fetched via the Ajax option. If the 
+external page is fetched via <code>IFRAME</code>, the above will not work and is 
+unnecessary anyhow, as the nested tab's invocation code should simply appear 
+within the external page itself.</p>
+<p>On the <a href="ajaxtabs_suppliment3.htm">next page</a>, lets wrap everything 
+neatly together in the form of the documentation for the script!</p>
+    <h1 class="navselectheader">Table Of Contents</h1>
+<p>
+    This script consists of an index page plus a supplementary page:<ul class="navselectlist">
+	<li><a href="index.htm">Script Index Page</a></li>
+	<li><a href="ajaxtabs_suppliment.htm">Dynamically selecting a tab/ loading 
+	an external page</a></li>
+	<li>Nesting ajax tabs</li>
+	<li><a href="ajaxtabs_suppliment3.htm">Ajax Tabs Content documentation</a></li>
+	</ul>
+	<p>
+    <!--#include virtual="/ddincludes/contentfooter.htm" --></td>
+  </tr>
+</table>
+
+<!--#include virtual="/ddincludes/footer.htm" -->
+
+</body>
+
+</html>
